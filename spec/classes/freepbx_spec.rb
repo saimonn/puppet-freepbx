@@ -2,9 +2,11 @@ require 'spec_helper'
 describe 'freepbx' do
   context 'when on Debian' do
     let (:facts) { {
-      :osfamily        => 'Debian',
-      :operatingsystem => 'Debian',
-      :lsbdistcodename => 'wheezy',
+      :osfamily               => 'Debian',
+      :operatingsystem        => 'Debian',
+      :lsbdistcodename        => 'wheezy',
+      :operatingsystemrelease => '7.5',
+      :concat_basedir         => '/dne',
     } }
 
     context 'when no parameters are specified' do

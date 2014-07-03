@@ -15,12 +15,16 @@ class freepbx::config {
     ensure  => directory,
   }
 
+  if !defined(Class['apache']) {
+    include ::apache
+  }
+
   apache::vhost { $freepbx::vhost_name:
     port    => 80,
     docroot => $freepbx::vhost_docroot,
   }
 
-  augeas{'freepbx PHP setting':
+  augeas{'freepbx upload_max_filesize PHP setting':
     lens    => 'PHP.lns',
     incl    => '/etc/php5/apache2/php.ini',
     changes => 'set PHP/upload_max_filesize 120M',
